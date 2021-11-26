@@ -1,6 +1,5 @@
 @import './reset.css';
 @import './variables';
-@import './welcomeMessage';
 
 html {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -63,4 +62,17 @@ h1 {
   text-shadow:black;
   font-weight:bold;
   margin-bottom: 25px;
+}
+
+.weather-card {
+  margin : 5px;
+  border: 2px solid black;
+}
+
+.row-zero-padding {
+  padding: 0px;
+}
+
+.weather-more-details {
+  margin-top:70px;
 }

@@ -5,15 +5,18 @@ import LocationService from 'services/api/location';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LocationList from './components/Locations/LocationList';
 import ForecastList from './components/Forecast/ForecastList';
+import Location from 'models/location';
 
 const Forecast: React.FC<RouteComponentProps> = (props) => {
   
   const [forecast, setForecast] = useState<Array<DailyForecast>>([]
     );
+  
+  const [location, setLocation] = useState<Location>(props.location.state as Location);
     
   const onLoad =  () => {
     console.log(" hey")
-    var id = props.location.state
+    const id = location.woeid
     console.log(id)
     getLocationByWoeid(id)
   }
@@ -33,18 +36,25 @@ const Forecast: React.FC<RouteComponentProps> = (props) => {
         });
   }
 
-  const handleClick = () => {
-      console.log(forecast)
-  }
+  const handleLocationClick = (id: number) => {
+    props.history.push({
+      pathname: '/'})
+    }
 
   useEffect(onLoad, []);
 
   return(
     <div>
       <div className="container center-container">
-        <h1>Weather</h1>
-        <button onClick={handleClick}>Click here</button>
-        <div className="locations-div">
+        <h3>Five Day Weather Forecast</h3>
+        <div>
+          <div>
+            <h3><i>{location.location_type} of</i></h3>
+            <h2><b>{location.title}</b> </h2>
+            <p><i>Please click on the date to show more info</i></p>
+          </div>
+        </div>
+        <div>
           <ForecastList 
             forecasts ={forecast} >
           </ForecastList>
